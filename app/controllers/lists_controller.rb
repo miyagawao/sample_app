@@ -9,14 +9,19 @@ class ListsController < ApplicationController
     list = List.new(list_params)
     #データをデータベースに保存するためのSaveメソッド実行
     list.save
-    #トップ画面へリダイレクト
-    redirect_to '/top'
+    #詳細画面へリダイレクト
+    redirect_to list_path(list.id)
   end
   
   def index
     @lists = List.all
   end
-
+  
+  def show
+    @list = List.find(params[:id])
+  end
+  
+  
   private
   # ストロングパラメータ
   def list_params
